@@ -62,6 +62,10 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: spec.nodeName
+          {{- if .Values.datadog.site }}
+          - name: DD_SITE
+            value: {{ .Values.datadog.site | quote }}
+          {{- end }}                
 {{- if .Values.clusterChecksRunner.env }}
 {{ toYaml .Values.clusterChecksRunner.env | indent 10 }}
 {{- end }}
